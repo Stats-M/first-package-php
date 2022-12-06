@@ -1,12 +1,11 @@
 {
   "name": "stats-m/first-package",
-  "description": "My first package just for fun",
+  "description": "My first package just for fun and learning Composer",
   "keywords": ["first", "package"],
   "license": "MIT",
   "authors": [
     {
-      "name": "Stanislav Moskalev",
-      "email": "deafstats@live.ru"
+      "name": "Stanislav Moskalev"
     }
   ],
   "require": {

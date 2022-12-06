@@ -1,6 +1,10 @@
-# first-package
+### first-package
+## Тестовый пакет для Composer
+Этот проект служит для отработки навыков формирования php-пакета для Composer.
 
-Helper for formatting strings with dynamic data
+
+
+
 
 ### How to install to your project
 ```

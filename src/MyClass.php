@@ -9,11 +9,13 @@ use Statsm\FirstPackage\Exceptions\MyException;
  */
 class MyClass
 {
-    /**
-     * @throws MyException
-     */
     public function __construct()
     {
-        throw new MyException();
+        //throw new MyException();
+    }
+
+    public function dumpParams(array $params): void
+    {
+        var_dump($params);
     }
 }
