@@ -21,10 +21,16 @@ class Vector2D
         $this->y_ = $y;
     }
 
-    public function fromVector2D(Vector2D $other)
+    /**
+     * Clones others Vector2D
+     * @param Vector2D $other
+     *
+     * @return Vector2D
+     */
+    public static function clone(Vector2D $other): Vector2D
     {
-        $this->x_ = $other->x_;
-        $this->y_ = $other->y_;
+        $new = new static($other->x_, $other->y_);
+        return $new;
     }
 
     /**
@@ -41,7 +47,7 @@ class Vector2D
     }
 
     /**
-     * Substracts another vector from the current
+     * Subtracts another vector from the current
      * @param Vector2D $other
      * @return Vector2D
      */
@@ -85,9 +91,9 @@ class Vector2D
 
     /**
      * Scalar operation on vector
-     * @param string $operation
-     * @param float $scalarValue
-     * @return $this
+     * @param string $operation one of the following: '+', '-', '*', '/'
+     * @param float  $scalarValue
+     * @return Vector2D
      * @throws MyException
      */
     public function scalarOperation(string $operation, float $scalarValue): Vector2D
@@ -98,37 +104,29 @@ class Vector2D
 
         switch($operation) {
             case '+':
-                $this->x_ += $scalarValue;
-                $this->y_ += $scalarValue;
-                break;
+                return new Vector2D($this->x_ + $scalarValue, $this->y_ + $scalarValue);
             case '-':
-                $this->x_ -= $scalarValue;
-                $this->y_ -= $scalarValue;
-                break;
+                return new Vector2D($this->x_ - $scalarValue, $this->y_ - $scalarValue);
             case '*':
-                $this->x_ *= $scalarValue;
-                $this->y_ *= $scalarValue;
-                break;
+                return new Vector2D($this->x_ * $scalarValue, $this->y_ * $scalarValue);
             case '/':
                 if (abs($scalarValue) < $this->delta_) {
                     throw new MyException('Division by zero');
                 }
-                $this->x_ /= $scalarValue;
-                $this->y_ /= $scalarValue;
-                break;
+                return new Vector2D($this->x_ / $scalarValue, $this->y_ / $scalarValue);
             default:
                 throw new MyException('Unknown operation');
         }
-
-        return new Vector2D($this->x_, $this->y_);
-    }
+   }
 
     /**
      * Calculates vector length
      * @return float
      */
-    public function length(): float
+    public function getLength(): float
     {
         return sqrt(($this->x_)^2 + ($this->y_)^2);
     }
+
+    //TODO operators == and !=
 }

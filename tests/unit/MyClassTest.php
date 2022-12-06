@@ -14,12 +14,14 @@ class MyClassTest extends \Codeception\Test\Unit
     public function testFirst()
     {
         $test = new MyClass();
-        $test->dumpParams([
-            4,
-            5,
-            7 => 6,
-            6,
-        ]);
+        $test->dumpParams(
+            [
+                4,
+                5,
+                7 => 6,
+                6,
+            ]
+        );
         /*
         try {
             new MyClass();
@@ -50,7 +52,7 @@ class MyClassTest extends \Codeception\Test\Unit
         try {
             $result = $vector1->div($vector3);
             $this->fail();
-        } catch(MyException $e) {
+        } catch (MyException $e) {
             // OK. Just catch exception of our type silently
         }
 
@@ -58,7 +60,7 @@ class MyClassTest extends \Codeception\Test\Unit
         try {
             $result = $vector1->div($vector4);
             $this->fail();
-        } catch(MyException $e) {
+        } catch (MyException $e) {
             // OK. Just catch exception of our type silently
         }
     }
@@ -84,8 +86,18 @@ class MyClassTest extends \Codeception\Test\Unit
         try {
             $result = $vector1->scalarOperation('/', 0);
             $this->fail();
-        } catch(MyException $e) {
+        } catch (MyException $e) {
             // OK. Just catch exception of our type silently
         }
+    }
+
+    /**
+     * @return void
+     */
+    public function testLength()
+    {
+        $vector = new Vector2D(3, 4);
+
+        $this->assertEquals(5, $vector);
     }
 }
