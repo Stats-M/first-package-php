@@ -157,7 +157,7 @@ class VectorN
         }
 
         return new VectorN($result);
-   }
+    }
 
     /**
      * Calculates vector length
@@ -167,7 +167,7 @@ class VectorN
     {
         $result = 0;
         for ($i = 0; $i < $this->getDimensionsCount(); ++$i) {
-            $result += $this->coords_[$i]^2;
+            $result += pow($this->coords_[$i], 2);
         }
 
         return sqrt($result);
@@ -182,5 +182,49 @@ class VectorN
         return count($this->coords_);
     }
 
-    //TODO operators == and !=
+    /**
+     * Checks whether 2 vectors are equal
+     * @param VectorN $vector1
+     * @param VectorN $vector2
+     * @return bool
+     */
+    public static function isEqual(VectorN $vector1, VectorN $vector2): bool
+    {
+        if ($vector1->getDimensionsCount() != $vector2->getDimensionsCount()) {
+            return false;
+        }
+
+        return $vector1->coords_ == $vector2->coords_;
+    }
+
+    /**
+     * Checks whether $this vector is equal to $other
+     * @param VectorN $other
+     * @return bool
+     */
+    public function isEqualTo(VectorN $other): bool
+    {
+        return VectorN::isEqual($this, $other);
+    }
+
+    /**
+     * Checks whether 2 vectors are NOT equal
+     * @param VectorN $vector1
+     * @param VectorN $vector2
+     * @return bool
+     */
+    public static function isNotEqual(VectorN $vector1, VectorN $vector2): bool
+    {
+        return !VectorN::isEqual($vector1, $vector2);
+    }
+
+    /**
+     * Checks whether $this vector is NOT equal to $other
+     * @param VectorN $other
+     * @return bool
+     */
+    public function isNotEqualTo(VectorN $other): bool
+    {
+        return !VectorN::isEqual($this, $other);
+    }
 }

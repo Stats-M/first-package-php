@@ -24,7 +24,6 @@ class Vector2D
     /**
      * Clones others Vector2D
      * @param Vector2D $other
-     *
      * @return Vector2D
      */
     public static function clone(Vector2D $other): Vector2D
@@ -117,7 +116,7 @@ class Vector2D
             default:
                 throw new MyException('Unknown operation');
         }
-   }
+    }
 
     /**
      * Calculates vector length
@@ -125,8 +124,48 @@ class Vector2D
      */
     public function getLength(): float
     {
-        return sqrt(($this->x_)^2 + ($this->y_)^2);
+        return sqrt(pow($this->x_,2) + pow($this->y_,2));
     }
 
-    //TODO operators == and !=
+    /**
+     * Checks whether 2 vectors are equal
+     * @param Vector2D $vector1
+     * @param Vector2D $vector2
+     * @return bool
+     */
+    public static function isEqual(Vector2D $vector1, Vector2D $vector2): bool
+    {
+        return ($vector1->x_ == $vector2->x_) && ($vector1->y_ == $vector2->y_);
+    }
+
+    /**
+     * Checks whether $this vector is equal to $other
+     * @param Vector2D $other
+     * @return bool
+     */
+    public function isEqualTo(Vector2D $other): bool
+    {
+        return Vector2D::isEqual($this, $other);
+    }
+
+    /**
+     * Checks whether 2 vectors are NOT equal
+     * @param Vector2D $vector1
+     * @param Vector2D $vector2
+     * @return bool
+     */
+    public static function isNotEqual(Vector2D $vector1, Vector2D $vector2): bool
+    {
+        return !Vector2D::isEqual($vector1, $vector2);
+    }
+
+    /**
+     * Checks whether $this vector is NOT equal to $other
+     * @param Vector2D $other
+     * @return bool
+     */
+    public function isNotEqualTo(Vector2D $other): bool
+    {
+        return !Vector2D::isEqual($this, $other);
+    }
 }
